@@ -66,6 +66,8 @@ final class CachedBluetoothDevice implements Comparable<CachedBluetoothDevice> {
     // Whether device is unpaired and out of range
     private boolean mRemovable;
 
+    private boolean mDeviceRemove;
+
     private int mPhonebookPermissionChoice;
     private int mMessagePermissionChoice;
 
@@ -403,8 +405,9 @@ final class CachedBluetoothDevice implements Comparable<CachedBluetoothDevice> {
     }
 
     boolean isRemovable () {
-        return mRemovable;
-    }
+        return mDeviceRemove;
+   }
+
 
     void setVisible(boolean visible) {
         if (mVisible != visible) {
@@ -414,8 +417,9 @@ final class CachedBluetoothDevice implements Comparable<CachedBluetoothDevice> {
     }
 
     void setRemovable(boolean removable) {
-        mRemovable = removable;
+        mDeviceRemove = removable;
     }
+
 
     int getBondState() {
         return mDevice.getBondState();
@@ -673,5 +677,4 @@ final class CachedBluetoothDevice implements Comparable<CachedBluetoothDevice> {
                                                                      Context.MODE_PRIVATE);
         return preference.getInt(mDevice.getAddress(), PERMISSION_ACCESS_UNKNOWN);
     }
-
 }
