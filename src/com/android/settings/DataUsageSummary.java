@@ -40,6 +40,7 @@ import static android.net.TrafficStats.GB_IN_BYTES;
 import static android.net.TrafficStats.MB_IN_BYTES;
 import static android.net.TrafficStats.UID_REMOVED;
 import static android.net.TrafficStats.UID_TETHERING;
+import static android.telephony.TelephonyManager.SIM_STATE_READY;
 import static android.text.format.DateUtils.FORMAT_ABBREV_MONTH;
 import static android.text.format.DateUtils.FORMAT_SHOW_DATE;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -2194,7 +2195,7 @@ public class DataUsageSummary extends Fragment {
     }
 
     /**
-     * Test if device has a mobile data radio in ready state.
+     * Test if device has a mobile data radio with subscription in ready state.
      */
     public static boolean hasReadyMobileRadio(Context context) {
         if (TEST_RADIOS) {
@@ -2203,9 +2204,8 @@ public class DataUsageSummary extends Fragment {
 
         final ConnectivityManager conn = ConnectivityManager.from(context);
 
-        // require both supported network and phone number
-        return conn.isNetworkSupported(TYPE_MOBILE) &&
-                !TextUtils.isEmpty(tele.getLine1Number());
+        // require both supported network and subscription
+        return conn.isNetworkSupported(TYPE_MOBILE) && hasSubscription(context);
     }
 
     /**
@@ -2330,8 +2330,7 @@ public class DataUsageSummary extends Fragment {
         // build combined list of all limited networks
         final ArrayList<CharSequence> limited = Lists.newArrayList();
 
-        final TelephonyManager tele = TelephonyManager.from(context);
-        if (!TextUtils.isEmpty(tele.getLine1Number())) {
+        if (hasSubscription(context)) {
             final String subscriberId = getActiveSubscriberId(context);
             if (mPolicyEditor.hasLimitedPolicy(buildTemplateMobileAll(subscriberId))) {
                 limited.add(getText(R.string.data_usage_list_mobile));
