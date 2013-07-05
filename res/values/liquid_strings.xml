@@ -937,4 +937,8 @@
     <string name="listview_anticipate_overshoot_interpolator">Anticipate Overshoot</string>
     <string name="listview_bounce_interpolator">Bounce</string>
 
+     <!-- Network speed -->
+     <string name="show_network_speed">Network Speed</string>
+     <string name="show_network_speed_summary">Show network speed in statusbar</string>
+
 </resources>

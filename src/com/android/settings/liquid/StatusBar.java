@@ -50,6 +50,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private static final String STATUS_BAR_QUICK_PEEK = "status_bar_quick_peek";
     private static final String STATUS_ICON_COLOR_BEHAVIOR = "status_icon_color_behavior";
     private static final String STATUS_ICON_COLOR = "status_icon_color";
+    private static final String KEY_STATUS_BAR_TRAFFIC = "status_bar_traffic";
 
     private StatusBarBrightnessChangedObserver mStatusBarBrightnessChangedObserver;
 
@@ -65,6 +66,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private CheckBoxPreference mStatusBarQuickPeek;
     private CheckBoxPreference mStatusIconBehavior;
     private ColorPickerPreference mIconColor;
+    private CheckBoxPreference mStatusBarTraffic;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -123,6 +125,10 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         mStatusIconBehavior.setChecked(Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.ICON_COLOR_BEHAVIOR, 0) == 1);
 
+		mStatusBarTraffic = (CheckBoxPreference) findPreference(KEY_STATUS_BAR_TRAFFIC);
+		mStatusBarTraffic.setChecked(Settings.System.getBoolean(getActivity().getApplicationContext().getContentResolver(),
+                Settings.System.STATUS_BAR_TRAFFIC, 0) == 1);
+
         mIconColor = (ColorPickerPreference) findPreference(STATUS_ICON_COLOR);
         mIconColor.setOnPreferenceChangeListener(this);
 
@@ -146,6 +152,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         boolean result = false;
+
         if (preference == mStatusBarCmSignal) {
             int signalStyle = Integer.valueOf((String) newValue);
             int index = mStatusBarCmSignal.findIndexOfValue((String) newValue);
@@ -191,19 +198,24 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         boolean value;
 
         if (preference == mStatusBarNotifCount) {
-            value = mStatusBarNotifCount.isChecked();
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.STATUS_BAR_NOTIFICATION_COUNT, value ? 1 : 0);
+                    Settings.System.STATUS_BAR_NOTIFICATION_COUNT,
+                    mStatusBarNotifCount.isChecked() ? 1 : 0);
             return true;
         } else if (preference == mMissedCallBreath) {
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.MISSED_CALL_BREATH, 
+                    Settings.System.MISSED_CALL_BREATH,
                     mMissedCallBreath.isChecked() ? 1 : 0);
             return true;
         } else if (preference == mMMSBreath) {
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.MMS_BREATH, 
+                    Settings.System.MMS_BREATH,
                     mMMSBreath.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mStatusBarTraffic) {
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.STATUS_BAR_TRAFFIC,
+                    mStatusBarTraffic.isChecked() ? 1 : 0);
             return true;
         } else if (preference == mStatusIconBehavior) {
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
