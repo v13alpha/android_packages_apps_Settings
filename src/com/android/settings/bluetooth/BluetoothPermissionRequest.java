@@ -103,13 +103,14 @@ public final class BluetoothPermissionRequest extends BroadcastReceiver {
                 notification.setLatestEventInfo(context,
                     context.getString(R.string.bluetooth_connection_permission_request),
                     context.getString(R.string.bluetooth_connection_notif_message, deviceName),
-                    PendingIntent.getActivity(context, requestCode, connectionAccessIntent,
-                            PendingIntent.FLAG_CANCEL_CURRENT));
+
+                    PendingIntent.getActivity(context, 0, connectionAccessIntent,
+                        PendingIntent.FLAG_ONE_SHOT));
                 notification.flags = Notification.FLAG_AUTO_CANCEL |
                                      Notification.FLAG_ONLY_ALERT_ONCE;
                 notification.defaults = Notification.DEFAULT_SOUND;
-                notification.deleteIntent = PendingIntent.getBroadcast(context,
-                        requestCode, deleteIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+                notification.deleteIntent = PendingIntent.getBroadcast(context, 0, deleteIntent,
+                                                PendingIntent.FLAG_ONE_SHOT);
 
                 NotificationManager notificationManager =
                     (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
