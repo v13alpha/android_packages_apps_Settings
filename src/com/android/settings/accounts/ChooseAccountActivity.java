@@ -81,10 +81,8 @@ public class ChooseAccountActivity extends PreferenceActivity {
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        ActionBar mActionBar = getActionBar();
-        if (mActionBar != null) {
-            mActionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
         setContentView(R.layout.add_account_screen);
         addPreferencesFromResource(R.xml.add_account_settings);
         mAuthorities = getIntent().getStringArrayExtra(

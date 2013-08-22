@@ -213,10 +213,7 @@ public class Status extends PreferenceActivity {
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        ActionBar mActionBar = getActionBar();
-        if (mActionBar != null) {
-            mActionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         mHandler = new MyHandler(this);
 
