@@ -31,6 +31,7 @@ import android.provider.Settings.SettingNotFoundException;
 import android.util.Log;
 
 import com.android.settings.R;
+import com.android.settings.util.CMDProcessor;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 
@@ -47,6 +48,8 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private static final String STATUS_BAR_NOTIF_ICON_OPACITY = "status_bar_icon_opacity";
     private static final String STATUS_BAR_AUTO_HIDE = "status_bar_auto_hide";
     private static final String STATUS_BAR_QUICK_PEEK = "status_bar_quick_peek";
+    private static final String STATUS_ICON_COLOR_BEHAVIOR = "status_icon_color_behavior";
+    private static final String STATUS_ICON_COLOR = "status_icon_color";
 
     private StatusBarBrightnessChangedObserver mStatusBarBrightnessChangedObserver;
 
@@ -60,6 +63,8 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private ListPreference mStatusBarIconOpacity;
     private ListPreference mStatusBarAutoHide;
     private CheckBoxPreference mStatusBarQuickPeek;
+    private CheckBoxPreference mStatusIconBehavior;
+    private ColorPickerPreference mIconColor;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,7 +100,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         mStatusBarIconOpacity.setValue(String.valueOf(iconOpacity));
         mStatusBarIconOpacity.setOnPreferenceChangeListener(this);
 
-        // Start observing for changes on auto brightness
         mStatusBarBrightnessChangedObserver = new StatusBarBrightnessChangedObserver(new Handler());
         mStatusBarBrightnessChangedObserver.startObserving();
 
@@ -114,6 +118,13 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         mStatusBarQuickPeek.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.STATUSBAR_PEEK, 0) == 1));
         mStatusBarQuickPeek.setOnPreferenceChangeListener(this);
+
+        mStatusIconBehavior = (CheckBoxPreference) prefSet.findPreference(STATUS_ICON_COLOR_BEHAVIOR);
+        mStatusIconBehavior.setChecked(Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                Settings.System.ICON_COLOR_BEHAVIOR, 0) == 1);
+
+        mIconColor = (ColorPickerPreference) findPreference(STATUS_ICON_COLOR);
+        mIconColor.setOnPreferenceChangeListener(this);
 
         mPrefCategoryGeneral = (PreferenceCategory) findPreference(STATUS_BAR_CATEGORY_GENERAL);
 
@@ -162,7 +173,17 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
                     Settings.System.AUTO_HIDE_STATUSBAR, statusBarAutoHideValue);
             updateStatusBarAutoHideSummary(statusBarAutoHideValue);
             return true;
+        } else if (preference == mIconColor) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(newValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.STATUS_ICON_COLOR, intHex);
+            CMDProcessor.restartSystemUI();
+            return true;
         }
+
         return false;
     }
 
@@ -175,13 +196,22 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
                     Settings.System.STATUS_BAR_NOTIFICATION_COUNT, value ? 1 : 0);
             return true;
         } else if (preference == mMissedCallBreath) {
-            Settings.System.putInt(mContext.getContentResolver(), Settings.System.MISSED_CALL_BREATH, 
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.MISSED_CALL_BREATH, 
                     mMissedCallBreath.isChecked() ? 1 : 0);
             return true;
         } else if (preference == mMMSBreath) {
-            Settings.System.putInt(mContext.getContentResolver(), Settings.System.MMS_BREATH, 
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.MMS_BREATH, 
                     mMMSBreath.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mStatusIconBehavior) {
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.ICON_COLOR_BEHAVIOR,
+                    mStatusIconBehavior.isChecked() ? 1 : 0);
+            CMDProcessor.restartSystemUI();
         }
+
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
@@ -191,7 +221,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             mClockStyle.setSummary(getString(R.string.clock_enabled));
         } else {
             mClockStyle.setSummary(getString(R.string.clock_disabled));
-         }
+        }
     }
 
     private void updateStatusBarAutoHideSummary(int value) {
