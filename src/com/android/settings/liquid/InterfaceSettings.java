@@ -69,6 +69,8 @@ public class InterfaceSettings extends SettingsPreferenceFragment
     private static final String KEY_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
     private static final String KEY_HALO_OPTIONS = "halo_options";
     private static final String KEY_TABLET_SETTINGS = "tablet_settings";
+    private static final String KEY_LISTVIEW_ANIMATION = "listview_animation";
+    private static final String KEY_LISTVIEW_INTERPOLATOR = "listview_interpolator";
 
     private CheckBoxPreference mUseAltResolver;
     private PreferenceCategory mAdvanced;
@@ -79,6 +81,8 @@ public class InterfaceSettings extends SettingsPreferenceFragment
     private Preference mRamBar;
     private ListPreference mVibrationMultiplier;
     private ListPreference mLowBatteryWarning;
+    private ListPreference mListViewAnimation;
+    private ListPreference mListViewInterpolator;
 
     private String mCustomLabelText = null;
 
@@ -118,6 +122,20 @@ public class InterfaceSettings extends SettingsPreferenceFragment
                 .getContentResolver(), Settings.System.VIBRATION_MULTIPLIER, 1));
         mVibrationMultiplier.setValue(currentValue);
         mVibrationMultiplier.setSummary(currentValue);
+
+        mListViewAnimation = (ListPreference) findPreference(KEY_LISTVIEW_ANIMATION);
+        int listviewanimation = Settings.System.getInt(getActivity().getContentResolver(),
+            Settings.System.LISTVIEW_ANIMATION, 1);
+        mListViewAnimation.setValue(String.valueOf(listviewanimation));
+        mListViewAnimation.setSummary(mListViewAnimation.getEntry());
+        mListViewAnimation.setOnPreferenceChangeListener(this);
+
+        mListViewInterpolator = (ListPreference) findPreference(KEY_LISTVIEW_INTERPOLATOR);
+        int listviewinterpolator = Settings.System.getInt(getActivity().getContentResolver(),
+            Settings.System.LISTVIEW_INTERPOLATOR, 0);
+        mListViewInterpolator.setValue(String.valueOf(listviewinterpolator));
+        mListViewInterpolator.setSummary(mListViewInterpolator.getEntry());
+        mListViewInterpolator.setOnPreferenceChangeListener(this);
 
         // Only show the hardware keys config on a device that does not have a navbar
         IWindowManager windowManager = IWindowManager.Stub.asInterface(
@@ -189,6 +207,22 @@ public class InterfaceSettings extends SettingsPreferenceFragment
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.ACTIVITY_RESOLVER_USE_ALT,
                     (Boolean) newValue ? 1 : 0);
+            return true;
+        } else if (preference == mListViewAnimation) {
+            int listviewanimation = Integer.valueOf((String) newValue);
+            int index = mListViewAnimation.findIndexOfValue((String) newValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.LISTVIEW_ANIMATION,
+                    listviewanimation);
+            mListViewAnimation.setSummary(mListViewAnimation.getEntries()[index]);
+            return true;
+        } else if (preference == mListViewInterpolator) {
+            int listviewinterpolator = Integer.valueOf((String) newValue);
+            int index = mListViewInterpolator.findIndexOfValue((String) newValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.LISTVIEW_INTERPOLATOR,
+                    listviewinterpolator);
+            mListViewInterpolator.setSummary(mListViewInterpolator.getEntries()[index]);
             return true;
         }
         return false;
