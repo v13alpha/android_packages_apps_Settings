@@ -53,6 +53,8 @@ import android.widget.Toast;
 import com.android.internal.util.liquid.ButtonConfig;
 import com.android.internal.util.liquid.ButtonsConstants;
 import com.android.internal.util.liquid.ButtonsHelper;
+import com.android.internal.util.liquid.DeviceSupportUtils;
+import com.android.internal.util.liquid.DeviceSupportUtils.FilteredDeviceFeaturesArray;
 
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.R;
@@ -175,8 +177,12 @@ public class ButtonsListViewSettings extends ListFragment implements
 
         mDisableMessage = (TextView) view.findViewById(R.id.disable_message);
 
-        mActionDialogValues = res.getStringArray(res.getIdentifier(mActionValuesKey, "array", "com.android.settings"));
-        mActionDialogEntries = res.getStringArray(res.getIdentifier(mActionEntriesKey, "array", "com.android.settings"));
+        FilteredDeviceFeaturesArray finalActionDialogArray = new FilteredDeviceFeaturesArray();
+        finalActionDialogArray = DeviceSupportUtils.filterUnsupportedDeviceFeatures(mActivity,
+            res.getStringArray(res.getIdentifier(mActionValuesKey, "array", "com.android.settings")),
+            res.getStringArray(res.getIdentifier(mActionEntriesKey, "array", "com.android.settings")));
+        mActionDialogValues = finalActionDialogArray.values;
+        mActionDialogEntries = finalActionDialogArray.entries;
 
         mPicker = new ShortcutPickerHelper(this, this);
 
