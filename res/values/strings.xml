@@ -705,6 +705,8 @@
     <string name="location_settings_title">Location</string>
     <!-- Main Settings screen setting option title for the item to take you to the security screen -->
     <string name="security_settings_title">Security</string>
+    <!-- App Ops -->
+    <string name="appops_settings_title">Privacy</string>
     <!-- Main Settings screen setting option summary text for the item tot ake you to the security and location screen -->
     <string name="security_settings_summary">Set My Location, screen unlock, SIM card lock, credential storage lock</string>
     <!-- Main Settings screen setting option summary text for the item to take you to the CDMA security and location screen -->
@@ -2740,7 +2742,7 @@
         <li>Disabled app notifications</li>\n
         <li>Default applications for actions</li>\n
         <li>Background data restrictions for apps</li>\n
-        <li>Any permission restrictions</li>\n\n
+        <li>Any permission restrictions</li>\n
         You will not lose any app data.</string>
     <!-- [CHAR LIMIT=25] Manage applications screen, menu item.  Confirmation button of dialog to confirm resetting user's app preferences. -->
     <string name="reset_app_preferences_button">Reset apps</string>
