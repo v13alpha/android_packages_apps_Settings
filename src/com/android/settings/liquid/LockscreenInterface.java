@@ -68,6 +68,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements P
     private static final String KEY_BACKGROUND_ALPHA_PREF = "lockscreen_alpha";
     private static final String KEY_LOCKSCREEN_TEXT_COLOR = "lockscreen_text_color";
     private static final String KEY_GLOWPAD_TORCH = "glowpad_torch";
+    private static final String KEY_LOCKSCREEN_HIDE_INITIAL_PAGE_HINTS = "lockscreen_hide_initial_page_hints";
 
     private ListPreference mBatteryStatus;
     private PreferenceScreen mLockscreenButtons;
@@ -79,6 +80,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements P
     private CheckBoxPreference mLockscreenEightTargets;
     private ColorPickerPreference mLockscreenTextColor;
     private Preference mShortcuts;
+    private CheckBoxPreference mLockscreenHideInitialPageHints;
 
     private boolean mIsScreenLarge;
 
@@ -172,6 +174,14 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements P
         mLockscreenButtons = (PreferenceScreen) findPreference(KEY_LOCKSCREEN_BUTTONS);
         if (!hasButtons()) {
             mAdditionalOptions.removePreference(mLockscreenButtons);
+        }
+
+        mLockscreenHideInitialPageHints = (CheckBoxPreference)findPreference(KEY_LOCKSCREEN_HIDE_INITIAL_PAGE_HINTS);
+        if (!Utils.isPhone(getActivity())) {
+            getPreferenceScreen().removePreference(mLockscreenHideInitialPageHints);
+            mLockscreenHideInitialPageHints = null;
+        } else {
+            mLockscreenHideInitialPageHints.setOnPreferenceChangeListener(this);
         }
 
         final int unsecureUnlockMethod = Settings.Secure.getInt(getActivity().getContentResolver(),
@@ -347,6 +357,10 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements P
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.LOCKSCREEN_CUSTOM_TEXT_COLOR, intHex);
             return true;
+        } else if (preference == mLockscreenHideInitialPageHints) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(cr, Settings.System.LOCKSCREEN_HIDE_INITIAL_PAGE_HINTS, value ? 1 : 0);
+            return true;
         }
         return false;
     }
@@ -382,6 +396,11 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements P
                     Settings.System.LOCKSCREEN_ALWAYS_SHOW_BATTERY, 0);
             mBatteryStatus.setValueIndex(batteryStatus);
             mBatteryStatus.setSummary(mBatteryStatus.getEntries()[batteryStatus]);
+        }
+
+        if (mLockscreenHideInitialPageHints != null) {
+            mLockscreenHideInitialPageHints.setChecked(Settings.System.getInt(cr,
+                    Settings.System.LOCKSCREEN_HIDE_INITIAL_PAGE_HINTS, 0) == 1);
         }
     }
 
