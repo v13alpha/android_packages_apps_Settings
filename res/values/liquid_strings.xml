@@ -937,8 +937,15 @@
     <string name="listview_anticipate_overshoot_interpolator">Anticipate Overshoot</string>
     <string name="listview_bounce_interpolator">Bounce</string>
 
-     <!-- Network speed -->
-     <string name="show_network_speed">Network Speed</string>
-     <string name="show_network_speed_summary">Show network speed in statusbar</string>
+    <!-- Network speed -->
+    <string name="show_network_speed">Network Speed</string>
+    <string name="show_network_speed_summary">Show network speed in statusbar</string>
+
+    <!-- Glowpad torch -->
+    <string name="lockscreen_glow_torch_title">Glowpad Torch</string>
+    <string name="lockscreen_glow_torch_summary">Longpress center turns on torch</string>
+    <string name="lockscreen_torch_off">Off</string>
+    <string name="lockscreen_torch_lockcircle">Lockring</string>
+    <string name="lockscreen_torch_navring">Navring</string>
 
 </resources>

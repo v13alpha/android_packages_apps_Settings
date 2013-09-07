@@ -64,15 +64,16 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements P
     private static final String PREF_LOCKSCREEN_AUTO_ROTATE = "lockscreen_auto_rotate";
     private static final String PREF_LOCKSCREEN_EIGHT_TARGETS = "lockscreen_eight_targets";
     private static final String PREF_LOCKSCREEN_SHORTCUTS = "lockscreen_shortcuts";
-
     private static final String KEY_BACKGROUND_PREF = "lockscreen_background";
     private static final String KEY_BACKGROUND_ALPHA_PREF = "lockscreen_alpha";
     private static final String KEY_LOCKSCREEN_TEXT_COLOR = "lockscreen_text_color";
+    private static final String KEY_GLOWPAD_TORCH = "glowpad_torch";
 
     private ListPreference mBatteryStatus;
     private PreferenceScreen mLockscreenButtons;
     private PreferenceCategory mAdditionalOptions;
     private ListPreference mCustomBackground;
+    private ListPreference mGlowpadTorch;
     private SeekBarPreference mBgAlpha;
     private CheckBoxPreference mLockscreenAutoRotate;
     private CheckBoxPreference mLockscreenEightTargets;
@@ -120,6 +121,14 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements P
         mCustomBackground.setOnPreferenceChangeListener(this);
         wallpaperImage = new File(mActivity.getFilesDir()+"/lockwallpaper");
         wallpaperTemporary = new File(mActivity.getCacheDir()+"/lockwallpaper.tmp");
+
+        mGlowpadTorch = (ListPreference) findPreference(KEY_GLOWPAD_TORCH);
+        if (mGlowpadTorch != null) {
+            int glowTorch = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.LOCKSCREEN_GLOW_TORCH, 0);
+            mGlowpadTorch.setValueIndex(glowTorch);
+            mGlowpadTorch.setOnPreferenceChangeListener(this);
+        }
 
         float bgAlpha;
         try {
@@ -231,6 +240,11 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements P
                     pic.delete();
                 }
             }
+            return true;
+        } else if (preference == mGlowpadTorch) {
+            int value = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.LOCKSCREEN_GLOW_TORCH, value);
             return true;
         } else if (preference == mCustomBackground) {
             int indexOf = mCustomBackground.findIndexOfValue(objValue.toString());
