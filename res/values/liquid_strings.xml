@@ -603,8 +603,6 @@
     <string name="quick_tiles_text_color_title">Text Color</string>
     <string name="qs_reset">Reset</string>
     <string name="qs_style_reset_message">Reset colors to default?</string>
-    <string name="title_floating_window">Floating window</string>
-    <string name="summary_floating_window">Open Quick Settings tiles in floating window</string>
 
     <!-- QuickSettings Tiles -->
     <string name="title_static_tiles">Static</string>
