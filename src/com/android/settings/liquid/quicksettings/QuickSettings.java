@@ -78,7 +78,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
     CheckBoxPreference mDynamicIme;
     CheckBoxPreference mDynamicUsbTether;
     CheckBoxPreference mCollapsePanel;
-    CheckBoxPreference mFloatingWindow;
+	CheckBoxPreference mFloatingWindow;
     CheckBoxPreference mDisablePanel;
     ListPreference mQuickPulldown;
     ListPreference mNoNotificationsPulldown;
@@ -111,7 +111,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         mTilePicker = (PreferenceScreen) prefSet.findPreference(TILE_PICKER);
         mCollapsePanel = (CheckBoxPreference) prefSet.findPreference(COLLAPSE_PANEL);
         mCollapsePanel.setChecked(Settings.System.getInt(resolver, Settings.System.QS_COLLAPSE_PANEL, 0) == 1);
-	mFloatingWindow = (CheckBoxPreference) prefSet.findPreference(FLOATING_WINDOW);
+		mFloatingWindow = (CheckBoxPreference) prefSet.findPreference(FLOATING_WINDOW);
         mFloatingWindow.setChecked(Settings.System.getInt(resolver, Settings.System.QS_FLOATING_WINDOW, 0) == 1);
 
         // Add the sound mode
