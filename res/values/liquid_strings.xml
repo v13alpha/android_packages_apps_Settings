@@ -326,10 +326,10 @@
     <string name="navbar_reset">Reset</string>
     <string name="navbar_button_style_reset_message">Reset style entries to default?</string>
     <string name="navbar_dimensions_style_reset_message">Reset style and dimensions to default?</string>
-    <string name="title_pref_menu_display">Menu Location</string>
-    <string name="summary_pref_menu_display">Remove your buttons when using big menu</string>
-    <string name="title_pref_navigation_menu_display">Menu Visibility</string>
-    <string name="summary_pref_navigation_menu_display">View or change appearance of menu buttons</string>
+    <string name="title_pref_menu_location">Menu Location</string>
+    <string name="summary_pref_menu_location">Remove your buttons when using big menu</string>
+    <string name="title_pref_menu_display">Menu Visibility</string>
+    <string name="summary_pref_menu_display">View or change appearance of menu buttons</string>
     <string name="navbar_enable_bar">Enable Navbar</string>
     <string name="navbar_enable_bar_summary">This enables navigation bar</string>
     <string name="navigation_bar_height_title">Navbar Height</string>
@@ -365,8 +365,8 @@
     <string name="right">Right</string>
     <string name="left">Left</string>
     <string name="both">Both</string>
-    <string name="default_jb_behavior">None</string>
-    <string name="always_show_invincible_icons">Always Show Invisible Icons</string>
+    <string name="default_jb_behavior">Show On Request (Default)</string>
+    <string name="never_show">Never Show</string>
     <string name="always_show">Always Show</string>
     <string name="default_jb_with_invincible_icons_when_hidden">Default With Invisible Icons</string>
     <string name="size_42_dp_default">42 dp (Default)</string>
