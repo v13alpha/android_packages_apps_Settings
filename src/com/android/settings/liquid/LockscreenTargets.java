@@ -41,45 +41,39 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.android.internal.util.liquid.LockscreenTargetUtils;
-import com.android.internal.widget.multiwaveview.GlowPadView;
-import com.android.internal.widget.multiwaveview.TargetDrawable;
 import com.android.settings.R;
 import com.android.settings.Utils;
 import com.android.settings.util.IconPicker;
-import com.android.settings.util.IconPicker.OnIconPickListener;
 import com.android.settings.util.ShortcutPickHelperTargets;
+import com.android.internal.widget.multiwaveview.GlowPadView;
+import com.android.internal.util.liquid.LockscreenTargetUtils;
+import com.android.settings.util.IconPicker.OnIconPickListener;
+import com.android.internal.widget.multiwaveview.TargetDrawable;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
-public class LockscreenTargets extends Fragment implements
+public class LockscreenTargets extends Fragment implements 
         ShortcutPickHelperTargets.OnPickListener, GlowPadView.OnTriggerListener, OnIconPickListener {
     private static final String TAG = "LockscreenTargets";
 
     private Activity mActivity;
     private Resources mResources;
-    private ShortcutPickHelper mPicker;
-    private IconPicker mIconPicker;
-
     private GlowPadView mWaveView;
+    private boolean mIsScreenLarge;
     private ViewGroup mContainer;
-
     private ImageButton mDialogIcon;
     private Button mDialogLabel;
     private ShortcutPickHelperTargets mPicker;
     private IconPicker mIconPicker;
-
     private ArrayList<TargetInfo> mTargetStore = new ArrayList<TargetInfo>();
     private int mTargetOffset;
     private int mMaxTargets;
-
     private File mTemporaryImage;
     private int mTargetIndex = 0;
     private static String mEmptyLabel;
-
     private static final int MENU_RESET = Menu.FIRST;
     private static final int MENU_SAVE = Menu.FIRST + 1;
 

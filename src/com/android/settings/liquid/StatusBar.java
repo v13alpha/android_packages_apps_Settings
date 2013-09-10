@@ -31,9 +31,10 @@ import android.provider.Settings.SettingNotFoundException;
 import android.util.Log;
 
 import com.android.settings.R;
+import com.android.settings.Utils;
 import com.android.settings.util.CMDProcessor;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.Utils;
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class StatusBar extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
@@ -126,7 +127,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
                 Settings.System.ICON_COLOR_BEHAVIOR, 0) == 1);
 
 		mStatusBarTraffic = (CheckBoxPreference) findPreference(KEY_STATUS_BAR_TRAFFIC);
-		mStatusBarTraffic.setChecked(Settings.System.getBoolean(getActivity().getApplicationContext().getContentResolver(),
+		mStatusBarTraffic.setChecked(Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
                 Settings.System.STATUS_BAR_TRAFFIC, 0) == 1);
 
         mIconColor = (ColorPickerPreference) findPreference(STATUS_ICON_COLOR);
