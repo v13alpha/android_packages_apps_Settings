@@ -62,6 +62,7 @@
 
     <!-- HALO Settings -->
     <string name="halo_enabled_title">Enable HALO</string>
+	<string name="halo_behavior_title">HALO Behavior</string>
     <string name="halo_enabled_summary">When checked HALO feature is enabled</string>
     <string name="halo_hide_title">Hide After Activity</string>
     <string name="halo_hide_summary">Appears then scrolls out of sight</string>
@@ -73,6 +74,12 @@
     <string name="halo_state_white">Whitelist</string>
     <string name="halo_pause_title">Pause Active App</string>
     <string name="halo_pause_summary">Open task while underlying app pauses</string>
+	<string name="halo_ninja_title">Ninja mode</string>
+    <string name="halo_ninja_summary">HALO will disappear completely when empty</string>
+    <string name="halo_notification_msgbox_title">Enable message pop-up</string>
+    <string name="halo_notification_msgbox_summary">Show message box for incoming notifications</string>
+    <string name="halo_unlock_ping_title">Ping on unlock</string>
+    <string name="halo_unlock_ping_summary">HALO will ping when device is unlocked if new notifications were received</string>
     <string name="halo_colors_title">Custom Colors</string>
     <string name="halo_colors_summary">Use custom colors for HALO instead</string>
     <string name="halo_circle_color_title">Circle Color</string>
@@ -87,6 +94,18 @@
     <string name="halo_size_large">Large</string>
     <string name="halo_size_gigantic">Gigantic</string>
     <string name="halo_size_monster">Monster</string>
+
+	<string name="halo_notification_count_title">Notification count</string>
+    <string name="halo_notification_count_summary">Display notification counts on HALO</string>
+    <string name="halo_notification_count_none">None</string>
+    <string name="halo_notification_count_total">Total</string>
+    <string name="halo_notification_count_individual">Per app</string>
+    <string name="halo_notification_count_both">Both</string>
+
+    <string name="halo_msgbox_animation_title">Message box animation</string>
+    <string name="halo_msgbox_animation_summary">Halo message box animation for incoming notifications</string>
+    <string name="halo_msgbox_animation_none">None</string>
+    <string name="halo_msgbox_animation_flip">Flip</string>
 
     <!-- Hardware Keys -->
     <string name="hardware_keys_bindings_title">Actions</string>
