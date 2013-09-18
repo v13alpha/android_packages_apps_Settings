@@ -868,7 +868,7 @@
         <item>0</item>
     </string-array>
 	
-	<string-array name="entries_halo_notification_count">
+    <string-array name="entries_halo_notification_count">
         <item>@string/halo_notification_count_none</item>
         <item>@string/halo_notification_count_total</item>
         <item>@string/halo_notification_count_individual</item>
@@ -882,7 +882,7 @@
         <item>4</item>
     </string-array>
 
-	<string-array name="entries_halo_msgbox_animation">
+    <string-array name="entries_halo_msgbox_animation">
         <item>@string/halo_msgbox_animation_none</item>
         <item>@string/halo_msgbox_animation_flip</item>
     </string-array>

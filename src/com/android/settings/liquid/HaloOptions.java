@@ -43,7 +43,7 @@ public class HaloOptions extends SettingsPreferenceFragment
     private static final String KEY_HALO_STATE = "halo_state";
     private static final String KEY_HALO_ENABLED = "halo_enabled";
     private static final String KEY_HALO_HIDE = "halo_hide";
-	private static final String KEY_HALO_NINJA = "halo_ninja";
+    private static final String KEY_HALO_NINJA = "halo_ninja";
     private static final String KEY_HALO_MSGBOX = "halo_msgbox";
     private static final String KEY_HALO_MSGBOX_ANIMATION = "halo_msgbox_animation";
     private static final String KEY_HALO_NOTIFY_COUNT = "halo_notify_count";
@@ -59,7 +59,7 @@ public class HaloOptions extends SettingsPreferenceFragment
 
     private ListPreference mHaloState;
     private ListPreference mHaloSize;
-	private ListPreference mHaloNotifyCount;
+    private ListPreference mHaloNotifyCount;
     private ListPreference mHaloMsgAnimate;
 
     private CheckBoxPreference mHaloNinja;
@@ -101,7 +101,7 @@ public class HaloOptions extends SettingsPreferenceFragment
         mHaloHide.setChecked(Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.HALO_HIDE, 0) == 1);
 
-		mHaloNinja = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_NINJA);
+        mHaloNinja = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_NINJA);
         mHaloNinja.setChecked(Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.HALO_NINJA, 0) == 1);
 
@@ -186,7 +186,7 @@ public class HaloOptions extends SettingsPreferenceFragment
         } else if (preference == mHaloHide) {
             Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.HALO_HIDE, mHaloHide.isChecked() ? 1 : 0);
-		} else if (preference == mHaloNinja) {
+        } else if (preference == mHaloNinja) {
             Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.HALO_NINJA, mHaloNinja.isChecked() ? 1 : 0);
         } else if (preference == mHaloMsgBox) {
@@ -225,7 +225,7 @@ public class HaloOptions extends SettingsPreferenceFragment
                     Settings.System.HALO_SIZE, haloSize);
             mHaloSize.setSummary(mHaloSize.getEntries()[index]);
             return true;
-		} else if (preference == mHaloMsgAnimate) {
+        } else if (preference == mHaloMsgAnimate) {
             int haloMsgAnimation = Integer.valueOf((String) newValue);
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.HALO_MSGBOX_ANIMATION, haloMsgAnimation);
