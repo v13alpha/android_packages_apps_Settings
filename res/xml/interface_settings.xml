@@ -50,7 +50,13 @@
             android:title="@string/tablet_settings_title"
             android:summary="@string/tablet_settings_summary"
             android:fragment="com.android.settings.liquid.TabletSettings" />
-	
+
+        <PreferenceScreen
+            android:key="active_display"
+            android:fragment="com.android.settings.liquid.ActiveDisplaySettings"
+            android:title="@string/ad_settings_title"
+            android:summary="@string/ad_settings_summary" />
+		
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -107,7 +113,7 @@
             android:entries="@array/listview_interpolator_entries"
             android:entryValues="@array/listview_interpolator_values"
             android:defaultValue="0" />
-
+		
     </PreferenceCategory>
 
 </PreferenceScreen>
