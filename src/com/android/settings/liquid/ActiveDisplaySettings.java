@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.chameleonos;
+package com.android.settings.liquid;
 
 import android.content.Context;
 import android.hardware.SensorManager;
@@ -51,7 +51,6 @@ public class ActiveDisplaySettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mAllNotificationsPref;
     private CheckBoxPreference mPocketModePref;
     private ListPreference mRedisplayPref;
-    private SeekBarPreference mBrightnessLevel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,11 +93,6 @@ public class ActiveDisplaySettings extends SettingsPreferenceFragment implements
         mShowAmPmPref = (CheckBoxPreference) findPreference(KEY_SHOW_AMPM);
         mShowAmPmPref.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.ACTIVE_DISPLAY_SHOW_AMPM, 0) == 1));
-
-        mBrightnessLevel = (SeekBarPreference) findPreference(KEY_BRIGHTNESS);
-        mBrightnessLevel.setValue(Settings.System.getInt(getContentResolver(),
-                Settings.System.ACTIVE_DISPLAY_BRIGHTNESS, 100));
-        mBrightnessLevel.setOnPreferenceChangeListener(this);
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
