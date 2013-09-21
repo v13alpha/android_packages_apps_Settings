@@ -72,4 +72,16 @@
             android:summary="@string/ad_show_ampm_summary"
             android:dependency="ad_enable"/>
 
+        <com.android.settings.liquid.SeekBarPreference
+            android:key="ad_brightness"
+            android:persistent="false"
+            android:title="@string/ad_brightness_title"
+            android:summary="@string/ad_brightness_summary"
+            android:max="100"
+            settings:minimum="0"
+            settings:unitsLeft=""
+            settings:unitsRight="%"
+            android:defaultValue="100"
+            android:dependency="ad_enable" />
+
 </PreferenceScreen>
