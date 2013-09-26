@@ -28,20 +28,39 @@
             liquid:donateLink="@string/donate_liquid" />
 
         <com.android.settings.widget.DeveloperPreference
-            android:title="ItsMikeRamsay"
-            liquid:nameDev="itsmikeramsay"
-            liquid:twitterHandle="itsmikeramsay" />
-
-        <com.android.settings.widget.DeveloperPreference
             android:title="Deadman96385"
             liquid:nameDev="Deadman96385"
             liquid:twitterHandle="Deadman96385" />
+
+        <com.android.settings.widget.DeveloperPreference
+            android:title="jsnweitzel"
+            liquid:nameDev="jsnweitzel"
+            liquid:twitterHandle="XjsnweitzelX" />
+			
+        <com.android.settings.widget.DeveloperPreference
+            android:title="Somber73"
+            liquid:nameDev="Somber73"
+			
+        <com.android.settings.widget.DeveloperPreference
+            android:title="TheBr0ken"
+            liquid:nameDev="TheBr0ken"
+            liquid:twitterHandle="TheBr0ken" />
+
+        <com.android.settings.widget.DeveloperPreference
+            android:title="OldDroid"
+            liquid:nameDev="OldDroid"
+            liquid:twitterHandle="OldDroid_DEV" />
 
     </PreferenceCategory>
 
     <PreferenceCategory android:key="links"
         android:title="@string/links">
 
+        <Preference
+            android:key="liquid_Google+"
+            android:title="@string/liquid_Google+_title"
+            android:summary="@string/liquid_Google+_summary" />
+		
         <Preference
             android:key="liquid_facebook"
             android:title="@string/liquid_facebook_title"
