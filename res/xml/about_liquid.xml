@@ -40,6 +40,7 @@
         <com.android.settings.widget.DeveloperPreference
             android:title="Somber73"
             liquid:nameDev="Somber73"
+            liquid:twitterHandle="Somber73" />
 			
         <com.android.settings.widget.DeveloperPreference
             android:title="TheBr0ken"
@@ -57,9 +58,9 @@
         android:title="@string/links">
 
         <Preference
-            android:key="liquid_Google+"
-            android:title="@string/liquid_Google+_title"
-            android:summary="@string/liquid_Google+_summary" />
+            android:key="liquid_GooglePlus"
+            android:title="@string/liquid_GooglePlus_title"
+            android:summary="@string/liquid_GooglePlus_summary" />
 		
         <Preference
             android:key="liquid_facebook"
