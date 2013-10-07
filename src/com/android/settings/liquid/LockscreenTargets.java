@@ -139,10 +139,6 @@ public class LockscreenTargets extends Fragment implements
             .setIcon(R.drawable.ic_settings_backup) // use the backup icon
             .setAlphabeticShortcut('r')
             .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        menu.add(0, MENU_SAVE, 0, R.string.wifi_save)
-            .setIcon(R.drawable.ic_menu_save)
-            .setAlphabeticShortcut('s')
-            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
     }
 
     @Override
@@ -150,11 +146,6 @@ public class LockscreenTargets extends Fragment implements
         switch (item.getItemId()) {
             case MENU_RESET:
                 resetAll();
-                return true;
-            case MENU_SAVE:
-                saveAll();
-                Toast.makeText(mActivity,
-                        R.string.lockscreen_target_save, Toast.LENGTH_LONG).show();
                 return true;
             default:
                 return false;
@@ -365,6 +356,8 @@ public class LockscreenTargets extends Fragment implements
         item.iconType = iconType;
         item.iconSource = iconSource;
         item.packageName = packageName;
+
+        saveAll();
     }
 
     private Drawable getPickedIconFromDialog() {
