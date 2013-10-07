@@ -25,6 +25,8 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
+import android.util.Log;
+import android.view.WindowManagerGlobal;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 
