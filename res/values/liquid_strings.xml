@@ -285,6 +285,7 @@
     <string name="lockscreen_battery_status_title">Battery Status</string>
     <string name="lockscreen_battery_status_charging">Only When Charging</string>
     <string name="lockscreen_battery_status_alwayson">Always On</string>
+    <string name="lockscreen_battery_status_alwaysoff">Always Off</string>
     <string name="lockscreen_vibrate_enabled_title">Vibrate</string>
     <string name="lockscreen_vibrate_enabled_head">Vibrate when unlocking your device</string>
 
