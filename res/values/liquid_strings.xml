@@ -553,6 +553,7 @@
     <string name="power_menu_airplane_title">Airplane Mode</string>
     <string name="power_menu_sound_title">Sound Panel</string>
     <string name="power_menu_torch_title">Torch</string>
+    <string name="power_menu_user_title">User Switcher</string>
     <string name="expanded_desktop_summary">Show or change expanded desktop mode</string>
     <string name="expanded_desktop_disabled">Off</string>
     <string name="expanded_desktop_only_nav_bar">Hide Navbar</string>
