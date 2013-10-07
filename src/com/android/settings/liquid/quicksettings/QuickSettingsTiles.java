@@ -232,6 +232,11 @@ public class QuickSettingsTiles extends Fragment {
         if (!fastcharge.exists()) {
             QuickSettingsUtil.TILES.remove(QuickSettingsUtil.TILE_FCHARGE);
         }
+
+        // Dont show the ADB over network tile if not supported
+        if (!adbEnabled()) {
+            QuickSettingsUtil.TILES.remove(QuickSettingsUtil.TILE_NETWORKADB);
+        }
     }
 
     @Override
@@ -410,5 +415,9 @@ public class QuickSettingsTiles extends Fragment {
     private boolean deviceSupportsLte() {
         final TelephonyManager tm = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
         return (tm.getLteOnCdmaMode() == PhoneConstants.LTE_ON_CDMA_TRUE) || tm.getLteOnGsmMode() != 0;
+    }
+
+    private boolean adbEnabled(ContentResolver resolver) {
+        return (Settings.Global.getInt(resolver, Settings.Global.ADB_ENABLED, 0)) == 1;
     }
 }
