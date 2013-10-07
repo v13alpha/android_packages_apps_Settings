@@ -234,7 +234,7 @@ public class QuickSettingsTiles extends Fragment {
         }
 
         // Dont show the ADB over network tile if not supported
-        if (!adbEnabled()) {
+        if (!adbEnabled(resolver)) {
             QuickSettingsUtil.TILES.remove(QuickSettingsUtil.TILE_NETWORKADB);
         }
     }
@@ -417,7 +417,7 @@ public class QuickSettingsTiles extends Fragment {
         return (tm.getLteOnCdmaMode() == PhoneConstants.LTE_ON_CDMA_TRUE) || tm.getLteOnGsmMode() != 0;
     }
 
-    private boolean adbEnabled(ContentResolver resolver) {
-        return (Settings.Global.getInt(resolver, Settings.Global.ADB_ENABLED, 0)) == 1;
+    private boolean adbEnabled(ContentResolver cr) {
+        return (Settings.Global.getInt(cr, Settings.Global.ADB_ENABLED, 0)) == 1;
     }
 }
