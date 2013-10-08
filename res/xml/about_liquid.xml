@@ -40,7 +40,7 @@
         <com.android.settings.widget.DeveloperPreference
             android:title="Somber73"
             liquid:nameDev="Somber73"
-            liquid:twitterHandle="Somber73" />
+            liquid:twitterHandle="xSomber73" />
 			
         <com.android.settings.widget.DeveloperPreference
             android:title="TheBr0ken"
