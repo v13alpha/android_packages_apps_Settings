@@ -15,23 +15,6 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- About LiquidSmooth -->
-    <string name="links">Links</string>
-    <string name="devs">Developers</string>
-    <string name="contributors">Contributors</string>
-    <string name="about_liquid_title">About Liquid</string>
-    <string name="about_liquid_summary">Get to know the team</string>
-    <string name="donate_liquid">http://bit.ly/Ruy2HF</string>
-    <string name="liquid_source_title">LiquidSmooth Github</string>
-    <string name="liquid_website_title">LiquidSmooth Goo.im</string>
-    <string name="liquid_GooglePlus_title">LiquidSmooth GooglePlus</string>
-    <string name="liquid_facebook_title">LiquidSmooth Facebook</string>
-    <string name="donate_slim">http://www.slimroms.net/index.php/donations</string>
-    <string name="liquid_GooglePlus_summary">Join are friendly and informative Community at http://goo.gl/3lKUXu </string>
-    <string name="liquid_facebook_summary">https://www.facebook.com/liquidsmoothroms\nPlease like us and join in on facebook</string>
-    <string name="liquid_source_summary">Source at http://github.com/LiquidSmooth\nLiquidSmooth is fully open source code</string>
-    <string name="liquid_website_summary">http://goo.im/devs/liquidsmooth\nFind all the latest builds and news here</string>
-
     <!-- LiquidSmooth Settings -->
     <string name="superuser">Superuser</string>
     <string name="advanced_settings_title">Advanced</string>
